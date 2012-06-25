@@ -9,6 +9,15 @@
 #import "RevViewController.h"
 
 @implementation RevViewController
+{
+    int value1;
+    bool shouldClear;
+}
+
+@synthesize op;
+@synthesize op1;
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -26,7 +35,9 @@
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
+    [self setOp:nil];
+    [self setOp1:nil];
+       [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -55,6 +66,48 @@
 {
     // Return YES for supported orientations
     return YES;
+}
+ 
+
+- (IBAction)a:(id)sender {
+    UIButton* myButton = (UIButton*) sender;
+    if (shouldClear) {
+        op.text = @"";
+        shouldClear = false;
+    }
+    
+    op.text = [op.text stringByAppendingString:myButton.titleLabel.text];
+    
+}
+
+- (IBAction)clr:(id)sender {
+    op.text = @"0";
+}
+
+- (IBAction)dmas:(id)sender {
+    UIButton* dmas = (UIButton*) sender;
+    op1.text = dmas.titleLabel.text;
+    value1 = [op.text intValue];
+    shouldClear = TRUE; 
+    
+}
+
+- (IBAction)calc:(id)sender {
+    if ([op1.text isEqualToString:@"+"]) {
+        op.text = [NSString stringWithFormat:@"%d",value1 + op.text.intValue];
+    }
+    if ([op1.text isEqualToString:@"-"]) {
+        op.text = [NSString stringWithFormat:@"%d",value1 - op.text.intValue];
+    }
+    if ([op1.text isEqualToString:@"*"]) {
+        op.text = [NSString stringWithFormat:@"%d",value1 * op.text.intValue];
+    }
+    if ([op1.text isEqualToString:@"/"]) {
+        op.text = [NSString stringWithFormat:@"%d",value1 / op.text.intValue];
+    }
+   
+    shouldClear = TRUE;
+    
 }
 
 @end

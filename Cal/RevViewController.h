@@ -9,5 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface RevViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *op;
 
+@property (weak, nonatomic) IBOutlet UITextField *op1;
+
+- (IBAction)a:(id)sender;
+
+- (IBAction)clr:(id)sender;
+
+- (IBAction)dmas:(id)sender;
+- (IBAction)calc:(id)sender;
 @end
